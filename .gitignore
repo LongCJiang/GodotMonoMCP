@@ -1,0 +1,14 @@
+# dotnet
+**/bin/
+**/obj/
+
+# local test outputs
+smoke-results/
+smoke-results-test/
+
+# temp
+*.tmp
+*.log
+
+__pycache__/
+*.pyc
