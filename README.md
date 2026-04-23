@@ -47,7 +47,7 @@ dotnet run
 
 ```bash
 claude mcp add godot-mono --scope user \
-  --env GODOT_MONO_PATH=/path/to/Godot_v4.6.2-stable_mono_linux.x86_64 \
+  --env GODOT_MONO_PATH=/path/to/Godot\
   --env GODOT_PROJECT_PATH=/path/to/your-project \
   -- dotnet /abs/path/to/GodotMonoMcp.dll
 ```
