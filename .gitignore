@@ -12,4 +12,3 @@ smoke-results-test/
 
 __pycache__/
 *.pyc
-.claude/
