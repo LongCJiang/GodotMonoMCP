@@ -1,68 +1,69 @@
 # GodotMonoMCP
 
-English | [中文](README_CN.md)
+[English](README.md) | 中文
 
-MCP service implementation for Godot Mono 4.6.2, targeting the C#/Mono workflow.
+Godot Mono 4.6.2 的 MCP 服务实现，面向 C#/Mono 工作流。
 
-Compatible with **MCP 2024-11-05** and **2025-03-26** protocol versions, supporting both **stdio** and **SSE** transport modes.
+兼容 **MCP 2024-11-05** 与 **2025-03-26** 协议版本，支持 **stdio** 与 **SSE** 两种传输模式。
 
-## Attribution
+## 来源说明
 
-This project is implemented and adapted based on the toolset design and capability boundaries of the following repository:
+本项目基于以下仓库的工具集设计与能力边界进行实现与适配：
 
 - https://github.com/tugcantopaloglu/godot-mcp
 
-The goal of this repository is to provide equivalent tool coverage under **Godot Mono 4.6.2**, with usability enhancements for Mono/C# scenarios.
+本仓库目标是在 **Godot Mono 4.6.2** 下提供等价工具覆盖，并针对 Mono/C# 场景做可用性增强。
 
-## Key Capabilities
+## 主要能力
 
-- Covers the reference repository tool name set (154 tools)
-- `game_*` runtime tools: executed via `McpInteractionServer` (TCP)
-- Scene/resource headless tools: executed via `godot_operations.gd`
-- Project/file/configuration tools: C# local implementation
-- `export_project` auto-fixes for Mono export:
-  - Auto-completes `.csproj` / `.sln` (when missing)
-  - Auto-completes `export_presets.cfg` preset (when missing)
+- 覆盖参考仓库工具名集合（154 个）
+- `game_*` 运行时工具：通过 `McpInteractionServer`（TCP）执行
+- 场景/资源头less工具：通过 `godot_operations.gd` 执行
+- 项目/文件/配置工具：C# 本地实现
+- `export_project` 针对 Mono 导出做自动修复：
+  - 自动补齐 `.csproj` / `.sln`（缺失时）
+  - 自动补齐 `export_presets.cfg` preset（缺失时）
 
-## Directory Structure
 
-- `src/GodotMonoMcp`: MCP service (.NET)
-- `assets/godot`: Godot-side script assets
-- `scripts`: Helper scripts
+## 目录结构
 
-## Requirements
+- `src/GodotMonoMcp`：MCP 服务（.NET）
+- `assets/godot`：Godot 侧脚本资产
+- `scripts`：辅助脚本
+
+## 环境要求
 
 - .NET SDK 10+
 - Godot Mono 4.6.2
 
-Recommended environment variables:
+建议设置：
 
-- `GODOT_MONO_PATH`: Path to the Godot Mono executable
-- `GODOT_PROJECT_PATH`: Default Godot project path
+- `GODOT_MONO_PATH`：Godot Mono 可执行文件路径
+- `GODOT_PROJECT_PATH`：默认 Godot 项目路径
 
-## Local Run
+## 本地运行
 
-### stdio Mode (Default)
+### stdio 模式（默认）
 
 ```bash
 cd src/GodotMonoMcp
 dotnet run
 ```
 
-### SSE Mode
+### SSE 模式
 
 ```bash
 cd src/GodotMonoMcp
 dotnet run -- --transport sse --port 3000
 ```
 
-Help:
+帮助信息：
 
 ```bash
 dotnet run -- --help
 ```
 
-## Tool Configuration Examples
+## 各工具配置示例
 
 ### Claude Code
 
@@ -73,7 +74,7 @@ claude mcp add godot-mono --scope user \
   -- dotnet /abs/path/to/GodotMonoMcp.dll
 ```
 
-It is recommended to build first and then launch via DLL:
+建议先构建后使用 DLL 方式启动：
 
 ```bash
 dotnet build /abs/path/to/GodotMonoMcp.csproj
@@ -81,7 +82,7 @@ dotnet build /abs/path/to/GodotMonoMcp.csproj
 
 ### Kimi CLI (Kimi Code)
 
-Add to `~/.kimi/mcp.json`:
+在 `~/.kimi/mcp.json` 中添加：
 
 ```json
 {
@@ -102,7 +103,7 @@ Add to `~/.kimi/mcp.json`:
 
 ### OpenCode
 
-Add to `.opencode/config.yaml` or `~/.opencode/config.yaml`:
+在 `.opencode/config.yaml` 或 `~/.opencode/config.yaml` 中添加：
 
 ```yaml
 mcp_servers:
@@ -117,7 +118,7 @@ mcp_servers:
 
 ### OpenAI Codex CLI
 
-Add to `.codex/config.yaml` or `~/.codex/config.yaml`:
+在 `.codex/config.yaml` 或 `~/.codex/config.yaml` 中添加：
 
 ```yaml
 mcp_servers:
@@ -132,7 +133,7 @@ mcp_servers:
 
 ### Cline / Roo Code
 
-Add to `cline_mcp_settings.json`:
+在 `cline_mcp_settings.json` 中添加：
 
 ```json
 {
@@ -153,7 +154,7 @@ Add to `cline_mcp_settings.json`:
 
 ### Continue
 
-Add to `~/.continue/config.json`:
+在 `~/.continue/config.json` 中添加：
 
 ```json
 {
@@ -178,7 +179,7 @@ Add to `~/.continue/config.json`:
 
 ### Cursor
 
-Find the **MCP** configuration page in Cursor Settings, or open it via the menu `Cursor Settings → MCP`, and add:
+在 Cursor 设置中找到 **MCP** 配置页，或通过菜单 `Cursor Settings → MCP` 打开，添加：
 
 ```json
 {
@@ -195,11 +196,11 @@ Find the **MCP** configuration page in Cursor Settings, or open it via the menu 
 }
 ```
 
-Or manually edit `~/.cursor/mcp.json` (global) or `.cursor/mcp.json` in the project root.
+或手动编辑 `~/.cursor/mcp.json`（全局）或项目根目录的 `.cursor/mcp.json`。
 
 ### Windsurf
 
-Find **Cascade** → **MCP Servers** in Windsurf settings, and add:
+在 Windsurf 设置中找到 **Cascade** → **MCP Servers**，添加：
 
 ```json
 {
@@ -216,11 +217,11 @@ Find **Cascade** → **MCP Servers** in Windsurf settings, and add:
 }
 ```
 
-Or manually edit `~/.windsurf/mcp.json`.
+或手动编辑 `~/.windsurf/mcp.json`。
 
 ### VS Code + GitHub Copilot Chat
 
-Install the **MCP Server** extension (e.g., `Microsoft Copilot Chat` has built-in MCP support), and add to VS Code user settings (`settings.json`):
+安装 **MCP Server** 扩展（如 `Microsoft Copilot Chat` 已内置 MCP 支持），在 VS Code 用户设置 (`settings.json`) 中添加：
 
 ```json
 {
@@ -239,17 +240,17 @@ Install the **MCP Server** extension (e.g., `Microsoft Copilot Chat` has built-i
 }
 ```
 
-Or use VS Code's **MCP: Add Server** command for graphical configuration.
+或使用 VS Code 的 **MCP: Add Server** 命令进行图形化配置。
 
-### SSE Mode Generic Configuration
+### SSE 模式通用配置
 
-If the client supports SSE transport, start the SSE server first:
+如果客户端支持 SSE 传输，可以先启动 SSE 服务器：
 
 ```bash
 dotnet /abs/path/to/GodotMonoMcp.dll --transport sse --port 3000
 ```
 
-Then specify the SSE URL in the client configuration:
+然后在客户端配置中指定 SSE URL：
 
 ```json
 {
@@ -261,72 +262,73 @@ Then specify the SSE URL in the client configuration:
 }
 ```
 
-## Full Tool List
 
-This project exposes **154** MCP tools, categorized by functional domain as follows:
+## 完整工具列表
 
-### Project Management
+本项目共暴露 **154** 个 MCP 工具，按功能域划分如下：
+
+### 项目管理
 
 `launch_editor`, `run_project`, `stop_project`, `create_project`, `export_project`, `get_godot_version`, `get_project_info`, `list_projects`, `get_uid`, `update_project_uids`, `list_project_files`
 
-### Files & Resources
+### 文件与资源
 
 `read_file`, `write_file`, `delete_file`, `rename_file`, `create_directory`, `load_sprite`, `create_resource`, `manage_resource`, `game_resource`, `attach_script`, `create_script`, `manage_shader`, `manage_theme_resource`, `export_mesh_library`, `game_script`
 
-### Scenes & Nodes
+### 场景与节点
 
 `create_scene`, `read_scene`, `save_scene`, `set_main_scene`, `modify_scene_node`, `remove_scene_node`, `manage_scene_structure`, `manage_scene_signals`, `add_node`, `game_instantiate_scene`, `game_remove_node`, `game_get_nodes_in_group`, `game_find_nodes_by_class`, `game_reparent_node`, `game_spawn_node`
 
-### Runtime Debugging
+### 运行时调试
 
 `get_debug_output`, `game_screenshot`, `game_get_scene_tree`, `game_eval`, `game_get_node_info`, `game_performance`, `game_wait`, `game_get_errors`, `game_get_logs`, `game_debug_draw`
 
-### Properties & Signals
+### 属性与信号
 
 `game_get_property`, `game_set_property`, `game_call_method`, `game_connect_signal`, `game_disconnect_signal`, `game_emit_signal`, `game_list_signals`, `game_await_signal`
 
-### Input & Interaction
+### 输入交互
 
 `game_click`, `game_key_press`, `game_key_hold`, `game_key_release`, `game_mouse_move`, `game_mouse_drag`, `game_scroll`, `game_gamepad`, `game_touch`, `game_input_state`, `game_input_action`
 
-### Animation & Skeleton
+### 动画与骨骼
 
 `game_play_animation`, `game_create_animation`, `game_tween_property`, `game_animation_tree`, `game_animation_control`, `game_bone_pose`, `game_skeleton_ik`
 
-### Physics & Collision
+### 物理与碰撞
 
 `game_add_collision`, `game_physics_body`, `game_create_joint`, `game_physics_2d`, `game_physics_3d`
 
-### 2D System
+### 2D系统
 
 `game_light_2d`, `game_shape_2d`, `game_path_2d`, `game_parallax`, `game_canvas`, `game_canvas_draw`
 
-### 3D System
+### 3D系统
 
 `game_csg`, `game_light_3d`, `game_mesh_instance`, `game_gridmap`, `game_path_3d`, `game_sky`, `game_camera_attributes`, `game_navigation_3d`, `game_terrain`
 
-### Rendering & Effects
+### 渲染与特效
 
 `game_environment`, `game_viewport`, `game_3d_effects`, `game_gi`, `game_render_settings`, `game_visual_shader`
 
-### Audio System
+### 音频系统
 
 `game_get_audio`, `game_audio_play`, `game_audio_bus`, `game_audio_effect`, `game_audio_bus_layout`, `game_audio_spatial`
 
-### UI System
+### UI系统
 
 `game_get_ui`, `game_ui_theme`, `game_ui_control`, `game_ui_text`, `game_ui_popup`, `game_ui_tree`, `game_ui_item_list`, `game_ui_tabs`, `game_ui_menu`, `game_ui_range`
 
-### Networking & Multiplayer
+### 网络与多人
 
 `game_http_request`, `game_websocket`, `game_multiplayer`, `game_rpc`
 
-### Project Configuration
+### 项目配置
 
 `read_project_settings`, `modify_project_settings`, `manage_autoloads`, `manage_input_map`, `manage_export_presets`, `manage_layers`, `manage_plugins`, `manage_translations`, `game_window`, `game_os_info`, `game_time_scale`, `game_process_mode`, `game_world_settings`, `game_locale`, `manage_ci_pipeline`, `manage_docker_export`
 
-### Other Runtime
+### 其他运行时
 
 `game_change_scene`, `game_pause`, `game_get_camera`, `game_set_camera`, `game_raycast`, `game_navigate_path`, `game_tilemap`, `game_set_shader_param`, `game_set_particles`, `game_create_timer`, `game_manage_group`, `game_serialize_state`, `game_multimesh`, `game_procedural_mesh`, `game_video`
 
-> The full tool name set is defined in [`src/GodotMonoMcp/ToolCatalog.cs`](src/GodotMonoMcp/ToolCatalog.cs).
+> 完整工具名集合定义于 [`src/GodotMonoMcp/ToolCatalog.cs`](src/GodotMonoMcp/ToolCatalog.cs)。
